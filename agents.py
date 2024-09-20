@@ -13,19 +13,22 @@ openai_llm = ChatOpenAI(model="gpt-4o-mini", api_key=openai_api_key)
 
 ceo = Agent(
     role='CEO',
-    goal='Coordenar toda a equipe de forma eficiente, delegando tarefas conforme necessário.',
-    backstory='Você fundou e gerencia uma empresa de RH que terceiriza serviços para outras empresas.',
+    goal='Coordenar a equipe de RH de forma eficiente, respondendo a consultas gerais.',
+    backstory="""Você é o CEO de uma empresa de RH inovadora. Seu objetivo é fornecer respostas 
+    úteis e personalizadas para consultas relacionadas a RH, delegando tarefas específicas 
+    quando necessário.""",
     llm=openai_llm,
     verbose=True,
     allow_delegation=True
 )
 
 recrutamento_selecao = Agent(
-    role='Recrutador',
-    goal='Realizar o recrutamento e seleção de novos funcionários para empresas clientes.',
-    backstory='Especialista em identificar talentos com as habilidades necessárias.',
+    role='Especialista em Recrutamento e Seleção',
+    goal='Encontrar os melhores talentos para as empresas clientes, garantindo um processo de seleção eficaz e justo.',
+    backstory="""Você é um recrutador experiente com um olhar aguçado para identificar 
+    o potencial nas pessoas. Sua abordagem combina técnicas tradicionais de recrutamento 
+    com as mais recentes inovações em avaliação de candidatos.""",
     llm=openai_llm,
-    verbose=True
 )
 
 vendedor = Agent(
@@ -33,7 +36,6 @@ vendedor = Agent(
     goal='Fechar vendas alinhadas com as necessidades dos clientes e informar o CEO.',
     backstory='Experiente em vendas de serviços high-ticket.',
     llm=openai_llm,
-    verbose=True
 )
 
 desenvolvedor = Agent(
@@ -41,7 +43,6 @@ desenvolvedor = Agent(
     backstory='Especialista em desenvolvimento pessoal e treinamento.',
     goal='Organizar o onboarding e criar planos de treinamento personalizados.',
     llm=openai_llm,
-    verbose=True
 )
 
 folha_pagamento = Agent(
@@ -49,7 +50,6 @@ folha_pagamento = Agent(
     backstory='Responsável por processar a folha de pagamento com precisão e pontualidade.',
     goal='Gerenciar todas as tarefas relacionadas à folha de pagamento dos funcionários.',
     llm=openai_llm,
-    verbose=True
 )
 
 coordenador_beneficios = Agent(
@@ -57,7 +57,6 @@ coordenador_beneficios = Agent(
     backstory='Gerencia os planos de benefícios e assegura a satisfação dos funcionários.',
     goal='Administrar e comunicar os benefícios disponíveis aos funcionários.',
     llm=openai_llm,
-    verbose=True
 )
 
 relacoes_funcionarios = Agent(
@@ -65,7 +64,6 @@ relacoes_funcionarios = Agent(
     backstory='Experiente em mediar conflitos e manter um ambiente de trabalho positivo.',
     goal='Resolver problemas interpessoais e promover um ambiente de trabalho harmonioso.',
     llm=openai_llm,
-    verbose=True
 )
 
 oficial_compliance = Agent(
@@ -73,7 +71,6 @@ oficial_compliance = Agent(
     backstory='Especialista em garantir que a empresa siga todas as leis e regulamentos aplicáveis.',
     goal='Conduzir auditorias internas e garantir a conformidade com as leis trabalhistas.',
     llm=openai_llm,
-    verbose=True
 )
 
 analista_rh = Agent(
@@ -81,7 +78,6 @@ analista_rh = Agent(
     backstory='Especialista em análise de dados de RH para melhorar processos e tomar decisões baseadas em dados.',
     goal='Analisar métricas de RH e fornecer insights para melhorar a eficiência e satisfação dos funcionários.',
     llm=openai_llm,
-    verbose=True
 )
 
 coordenador_beneficios = Agent(

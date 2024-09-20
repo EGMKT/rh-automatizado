@@ -43,3 +43,20 @@ class TrainingRecommendationTool(BaseTool):
             return "Recommend intermediate training modules."
         else:
             return "Recommend advanced training modules."
+
+class SalaryAnalysisTool(BaseTool):
+    name: str = Field(default="salary_analysis")
+    description: str = Field(default="Analisa tendências salariais para diferentes posições.")
+
+    def _run(self, position: str) -> str:
+        # Simule uma análise de salário aqui
+        return f"A média salarial para a posição de {position} é de R$ X.XXX,XX, com variação de 15% dependendo da experiência e localização."
+
+class PerformanceEvaluationTool(BaseTool):
+    name: str = Field(default="performance_evaluation")
+    description: str = Field(default="Avalia o desempenho dos funcionários com base em métricas predefinidas.")
+
+    def _run(self, employee_data: dict) -> str:
+        # Simule uma avaliação de desempenho aqui
+        score = sum(employee_data.values()) / len(employee_data)
+        return f"Com base nas métricas fornecidas, o desempenho do funcionário é classificado como {'Excelente' if score > 8 else 'Bom' if score > 6 else 'Precisa melhorar'}."

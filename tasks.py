@@ -2,8 +2,14 @@ from crewai import Task
 from agents import *
 # Tasks
 recrutamento = Task(
-    description='Recrutar novos funcionários para uma posição de desenvolvedor full-stack. Analise o mercado, crie uma descrição da vaga e liste os melhores candidatos.',
-    expected_output='Lista detalhada de candidatos qualificados, incluindo suas habilidades principais e experiência relevante.',
+    description="""Conduza um processo completo de recrutamento para uma posição de desenvolvedor full-stack.
+    1. Analise o mercado de trabalho atual para desenvolvedores.
+    2. Crie uma descrição de vaga atrativa e detalhada.
+    3. Defina critérios de seleção claros.
+    4. Sugira canais para divulgação da vaga.
+    5. Proponha um processo de triagem eficiente.
+    6. Liste os top 5 candidatos com justificativas.""",
+    expected_output='Um relatório detalhado do processo de recrutamento, incluindo análise de mercado, descrição da vaga, critérios de seleção, estratégia de divulgação, processo de triagem e lista dos top 5 candidatos.',
     agent=recrutamento_selecao
 )
 
@@ -16,8 +22,12 @@ vendas = Task(
 
 
 delegacao = Task(
-    description='Delegar tarefas para a equipe e supervisionar o progresso.',
-    expected_output='Relatório de progresso das tarefas delegadas.',
+    description="""
+    Analise a entrada do usuário e responda de forma natural e concisa.
+    Se for uma saudação, responda de forma amigável.
+    Se for uma pergunta ou tarefa específica, forneça uma resposta relevante ou indique que vai delegar para um especialista.
+    """,
+    expected_output="Uma resposta adequada à entrada do usuário",
     agent=ceo
 )
 
