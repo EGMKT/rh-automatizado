@@ -1,0 +1,86 @@
+Concepto Geral: Automação Completa do Setor de RH com CrewAI
+Objetivo:
+O projeto tem como objetivo criar uma plataforma de automação completa para o setor de Recursos Humanos (RH), utilizando o CrewAI como motor principal da aplicação. A plataforma será capaz de gerenciar desde processos simples, como folhas de pagamento, até recrutamento, treinamento e integrações com diversas ferramentas externas, tudo operado por uma única pessoa. O público-alvo será CEOs ou gerentes de RH que desejam centralizar todas as operações de RH em um só local.
+
+Funcionalidades Principais
+Recrutamento Automatizado:
+
+A plataforma será capaz de gerenciar todo o processo de recrutamento, desde a pesquisa e filtragem de candidatos até o agendamento de entrevistas.
+Integrações desejadas: LinkedIn, Google Workspace (Gmail, Google Drive), plataformas de tarefas como ClickUp, Todoist, Monday.com e Trello.
+Ferramentas: Pesquisa automática por candidatos com base nas descrições de trabalho fornecidas. O sistema deve gerar uma lista de candidatos com perfis, contatos e avaliação automática de adequação ao cargo.
+Gestão de Folha de Pagamento e Contratos:
+
+Automatização completa do gerenciamento de contratos e processamento de folha de pagamento.
+Integrações desejadas: Processadores de pagamento, bancos e plataformas financeiras.
+A plataforma deve ser capaz de calcular, processar e registrar pagamentos para os funcionários, integrando diretamente com bancos e processadores financeiros.
+Gestão de Equipes e Tarefas:
+
+Ferramentas de controle de tarefas e equipes, permitindo a atribuição automática de funções e o acompanhamento do progresso.
+Integrações desejadas: Notion, Slack, Google Workspace (Google Calendar, Google Chat).
+Ferramentas: Dashboard para visualizar tarefas e funções, com a capacidade de registrar e acompanhar manualmente se necessário.
+Treinamento e Desenvolvimento de Funcionários:
+
+Sistema de treinamento automático para os funcionários, com módulos personalizáveis baseados nos cargos e necessidades da empresa.
+Ferramentas: Criação de trilhas de treinamento automáticas baseadas nas funções e desempenho.
+Integrações de Ferramentas Externas
+A plataforma contará com integrações "a 1 clique" com as seguintes ferramentas, facilitando o trabalho e eliminando a necessidade de acessar múltiplos sistemas.
+
+Google Workspace:
+
+Gmail API: Enviar e receber e-mails automáticos, agendar entrevistas e comunicações.
+Google Calendar API: Agendamento de entrevistas e eventos.
+Google Drive API: Armazenamento e organização automática de documentos e currículos.
+Slack e Notion:
+
+Slack API: Comunicações e notificações automáticas entre equipes e RH.
+Notion API: Gestão de tarefas, criação de documentação e dashboards customizáveis.
+Plataformas de Tarefas (ClickUp, Todoist, Trello):
+
+Integração para delegação automática de tarefas e acompanhamento de progresso.
+Processamento de Pagamentos e Bancos:
+
+Integrações com APIs bancárias para automatizar a folha de pagamento.
+Requisitos de Implementação Técnica
+Infraestrutura:
+
+A plataforma será construída utilizando o CrewAI para orquestrar os agentes de IA que serão responsáveis por cada processo.
+Frameworks: Uso do CrewAI, APIs externas, Python e frameworks de back-end para a comunicação e orquestração entre os módulos.
+Autenticação e Segurança:
+
+O sistema utilizará autenticação OAuth para acesso seguro a APIs externas e proteção dos dados sensíveis dos funcionários e da empresa.
+Escalabilidade:
+
+A plataforma deve ser capaz de escalar facilmente, permitindo o gerenciamento de múltiplos usuários e grandes volumes de dados. O uso de serviços em nuvem, como AWS ou Google Cloud, será necessário para suportar a carga de trabalho.
+Acessibilidade e Interface de Usuário:
+
+A UI será desenvolvida com foco na simplicidade e funcionalidade, permitindo que os gerentes de RH ou CEOs acessem remotamente as funções principais da plataforma através de uma interface intuitiva e eficiente.
+
+
+Outras funcionalidades:
+1. Recrutamento Automatizado
+Objetivo: Automatizar a busca, filtragem e recomendação de candidatos para uma vaga específica.
+Processo:
+O usuário insere os requisitos da vaga (habilidades, experiência, etc.) na interface.
+A plataforma pesquisa automaticamente em fontes de dados externas (LinkedIn, Google Drive com currículos armazenados) e apresenta uma lista de candidatos recomendados.
+A visualização dos candidatos será feita em formato de "cards", com nome, experiência resumida e botão para agendar entrevista ou descartar.
+Interface Visual: O dashboard contará com uma barra lateral para filtrar candidatos por critérios como anos de experiência, localidade e habilidade específica. Um painel de visualização ao centro exibirá as informações completas do candidato ao clicar no "card".
+
+2.Gestão de Folha de Pagamento (MVP)
+Objetivo: Processamento automático da folha de pagamento, com integração direta aos bancos.
+Processo:
+A partir dos dados de entrada (horas trabalhadas, salário, bônus), a plataforma calculará os valores a serem pagos.
+Haverá um botão "Processar Pagamento", que inicia o cálculo e envia os dados para o banco integrado para pagamento automático.
+Interface Visual: Um painel dedicado à folha de pagamento com uma tabela listando os funcionários, o valor bruto, descontos e o valor líquido. Abaixo da tabela, haverá um botão para gerar o pagamento com um resumo final.
+
+3.Gestão de Equipes e Tarefas
+Objetivo: Atribuir tarefas automaticamente para funcionários com base em seus cargos e habilidades.
+Processo:
+O usuário poderá definir um projeto e atribuir tarefas diretamente da interface, com a possibilidade de integração com plataformas como ClickUp ou Todoist para acompanhar o progresso.
+A plataforma mostrará os funcionários disponíveis e sugerirá automaticamente a melhor pessoa para cada tarefa.
+Interface Visual: Um calendário integrado para visualizar prazos e tarefas pendentes, com a capacidade de arrastar e soltar tarefas entre os funcionários. As tarefas atribuídas serão exibidas em uma interface tipo "Kanban", com status como "Em progresso", "Concluído", etc.
+
+4.Treinamento e Desenvolvimento
+Objetivo: Criar um sistema automatizado para desenvolvimento de funcionários.
+Processo:
+A plataforma sugerirá treinamentos baseados nas metas de cada funcionário e feedbacks coletados.
+Treinamentos serão disponibilizados diretamente na interface, com relatórios de progresso gerados automaticamente.
