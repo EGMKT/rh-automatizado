@@ -13,7 +13,7 @@ jobs:
       with:
         host: ${{ secrets.DROPLET_IP }}
         username: ${{ secrets.DROPLET_USER }}
-        key: ${{ secrets.DROPLET_SSH_KEY }}
+        password: ${{ secrets.DROPLET_PASSWORD }}
         script: |
           cd /root/rh-automatizado
           git pull origin main
