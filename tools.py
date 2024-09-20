@@ -6,7 +6,7 @@ from crewai_tools import BaseTool
 
 # Ferramentas
 class SearchCandidatesTool(BaseTool):
-    name = "search_candidates"
+    name: str = "search_candidates"  # Adicione a anotação de tipo aqui
     description = "Searches for candidates based on a job title."
 
     def _run(self, job_title: str) -> str:
