@@ -1,7 +1,12 @@
 import streamlit as st
+import os
 from crewai import Crew
 from agents import *
 from tasks import *
+
+# Configurar variáveis de ambiente para limitar o uso de recursos
+os.environ['STREAMLIT_SERVER_MAX_UPLOAD_SIZE'] = '5'
+os.environ['STREAMLIT_SERVER_MAX_MESSAGE_SIZE'] = '50'
 
 st.set_page_config(page_title="RH Automatizado", page_icon="👥", layout="wide")
 
