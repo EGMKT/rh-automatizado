@@ -1,23 +1,31 @@
-from tasks import *
 import os
 import requests
 import logging
 import base64
+from crewai_tools import BaseTool
 
 # Ferramentas
-def search_candidates(job_title: str) -> str:
-    api_url = "https://example.com/api/candidates"
-    params = {"job_title": job_title}
-    
-    try:
-        response = requests.get(api_url, params=params)
-        response.raise_for_status()
-        candidates = response.json()
-        logging.info(f"Found {len(candidates)} candidates for {job_title}")
-        return f"Found {len(candidates)} candidates: " + ", ".join([f"{c['name']} ({c['email']})" for c in candidates])
-    except requests.exceptions.RequestException as e:
-        logging.error(f"Error fetching candidates: {e}")
-        return "Error fetching candidates."
+class SearchCandidatesTool(BaseTool):
+    name = "search_candidates"
+    description = "Searches for candidates based on a job title."
+
+    def _run(self, job_title: str) -> str:
+        api_url = "https://example.com/api/candidates"
+        params = {"job_title": job_title}
+        
+        try:
+            response = requests.get(api_url, params=params)
+            response.raise_for_status()
+            candidates = response.json()
+            logging.info(f"Found {len(candidates)} candidates for {job_title}")
+            return f"Found {len(candidates)} candidates: " + ", ".join([f"{c['name']} ({c['email']})" for c in candidates])
+        except requests.exceptions.RequestException as e:
+            logging.error(f"Error fetching candidates: {e}")
+            return "Error fetching candidates."
+
+    def _arun(self, job_title: str):
+        # This can be implemented for async execution if needed
+        raise NotImplementedError("This tool does not support async execution")
 
 def schedule_meeting_with_google_calendar(candidate_email: str, time: str, description: str):
     calendar_api_url = "https://www.googleapis.com/calendar/v3/calendars/primary/events"

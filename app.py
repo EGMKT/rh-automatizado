@@ -2,8 +2,8 @@ import streamlit as st
 from dotenv import load_dotenv
 import os
 from crewai import Crew
-from agents import *
-from tasks import *
+from agents import recrutamento_selecao, desenvolvedor
+from tasks import recrutamento
 
 load_dotenv()
 

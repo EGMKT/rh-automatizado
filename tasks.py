@@ -1,6 +1,5 @@
-from agents import *
 from crewai import Task
-from tools import *
+from agents import *
 # Tasks
 recrutamento = Task(
     description='Recrutar novos funcionários para uma posição de desenvolvedor full-stack.',
@@ -8,11 +7,13 @@ recrutamento = Task(
     agent=recrutamento_selecao
 )
 
+
 vendas = Task(
     description='Fechar um contrato de serviços de RH com uma nova empresa cliente.',
     expected_output='Contrato assinado e detalhes do novo cliente.',
     agent=vendedor
 )
+
 
 delegacao = Task(
     description='Delegar tarefas para a equipe e supervisionar o progresso.',
