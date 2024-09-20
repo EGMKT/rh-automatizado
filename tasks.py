@@ -2,8 +2,8 @@ from crewai import Task
 from agents import *
 # Tasks
 recrutamento = Task(
-    description='Recrutar novos funcionários para uma posição de desenvolvedor full-stack.',
-    expected_output='Lista de candidatos qualificados para entrevistas.',
+    description='Recrutar novos funcionários para uma posição de desenvolvedor full-stack. Analise o mercado, crie uma descrição da vaga e liste os melhores candidatos.',
+    expected_output='Lista detalhada de candidatos qualificados, incluindo suas habilidades principais e experiência relevante.',
     agent=recrutamento_selecao
 )
 
@@ -22,8 +22,8 @@ delegacao = Task(
 )
 
 processar_folha = Task(
-    description='Processar a folha de pagamento mensal para todos os funcionários.',
-    expected_output='Folha de pagamento processada e relatório de pagamentos.',
+    description='Processar a folha de pagamento mensal para todos os funcionários, incluindo cálculos de impostos e benefícios.',
+    expected_output='Relatório detalhado da folha de pagamento, incluindo salários, deduções e total de gastos da empresa.',
     agent=folha_pagamento
 )
 

@@ -1,45 +1,54 @@
 import streamlit as st
-from dotenv import load_dotenv
-import os
 from crewai import Crew
 from agents import *
 from tasks import *
 
-load_dotenv()
+st.set_page_config(page_title="RH Automatizado", page_icon="👥", layout="wide")
 
-st.set_page_config(page_title="RH Automatizado", page_icon="👥")
+# Título
+st.title("RH Automatizado - Assistente de IA")
 
-st.title("RH Automatizado")
+# Inicialização do histórico de mensagens
+if "messages" not in st.session_state:
+    st.session_state.messages = []
 
-st.sidebar.success("Selecione uma função acima.")
+# Exibição do histórico de mensagens
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
 
-def main():
-    menu = ["Recrutamento", "Folha de Pagamento", "Gestão de Equipes", "Análise de Dados"]
-    choice = st.sidebar.selectbox("Menu", menu)
+# Input do usuário
+if prompt := st.chat_input("Como posso ajudar você hoje?"):
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    with st.chat_message("user"):
+        st.markdown(prompt)
 
-    if choice == "Recrutamento":
-        st.subheader("Recrutamento")
-        job_title = st.text_input("Título da vaga")
-        if st.button("Recrutar"):
-            crew_recrutamento = Crew(
-                agents=[recrutamento_selecao, desenvolvedor],
-                tasks=[recrutamento]
-            )
-            with st.spinner('Processando...'):
-                result = crew_recrutamento.kickoff()
-            st.success(result)
+    with st.chat_message("assistant"):
+        message_placeholder = st.empty()
+        full_response = ""
 
-    elif choice == "Folha de Pagamento":
-        st.subheader("Folha de Pagamento")
-        # Adicione a lógica para folha de pagamento aqui
+        # Lógica melhorada para selecionar a Crew apropriada
+        if any(keyword in prompt.lower() for keyword in ["recrutar", "contratação", "vaga"]):
+            crew = Crew(agents=[recrutamento_selecao, desenvolvedor], tasks=[recrutamento])
+        elif "folha de pagamento" in prompt.lower():
+            crew = Crew(agents=[folha_pagamento], tasks=[processar_folha])
+        elif any(keyword in prompt.lower() for keyword in ["equipe", "funcionários", "conflito"]):
+            crew = Crew(agents=[relacoes_funcionarios], tasks=[mediacao_conflitos])
+        elif any(keyword in prompt.lower() for keyword in ["análise", "dados", "relatório"]):
+            crew = Crew(agents=[analista_rh], tasks=[analise_dados])
+        else:
+            crew = Crew(agents=[ceo], tasks=[delegacao])
 
-    elif choice == "Gestão de Equipes":
-        st.subheader("Gestão de Equipes")
-        # Adicione a lógica para gestão de equipes aqui
+        try:
+            result = str(crew.kickoff())
+            full_response += result
+        except Exception as e:
+            full_response = f"Desculpe, ocorreu um erro: {str(e)}"
 
-    elif choice == "Análise de Dados":
-        st.subheader("Análise de Dados")
-        # Adicione a lógica para análise de dados aqui
+        message_placeholder.markdown(full_response)
+    
+    st.session_state.messages.append({"role": "assistant", "content": full_response})
 
-if __name__ == '__main__':
-    main()
+# Sidebar
+st.sidebar.title("Informações")
+st.sidebar.info("Este é um assistente de IA para automação de RH. Ele pode ajudar com recrutamento, folha de pagamento, gestão de equipes e análise de dados.")

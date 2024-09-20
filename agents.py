@@ -1,14 +1,13 @@
 from crewai import Agent
-from tools import SearchCandidatesTool
-from langchain_google_genai.chat_models import ChatGoogleGenerativeAI
 from langchain_community.chat_models import ChatOpenAI
 import os
 
 # Configuração de LLMs
-openai_llm = ChatOpenAI(model="gpt-4", api_key=os.getenv('OPENAI_API_KEY'))
+openai_api_key = os.getenv('OPENAI_API_KEY')
+if not openai_api_key:
+    raise ValueError("OPENAI_API_KEY não encontrada. Por favor, configure esta variável de ambiente.")
 
-# Instantiate tools
-search_tool = SearchCandidatesTool
+openai_llm = ChatOpenAI(model="gpt-4o-mini", api_key=openai_api_key)
 
 # Agentes
 
@@ -26,7 +25,6 @@ recrutamento_selecao = Agent(
     goal='Realizar o recrutamento e seleção de novos funcionários para empresas clientes.',
     backstory='Especialista em identificar talentos com as habilidades necessárias.',
     llm=openai_llm,
-    tools=[search_tool],
     verbose=True
 )
 
