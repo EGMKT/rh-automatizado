@@ -3,6 +3,10 @@ import os
 from crewai import Crew
 from agents import *
 from tasks import *
+from dotenv import load_dotenv
+
+# Carregar variáveis de ambiente
+load_dotenv()
 
 # Desativar o file watcher do Streamlit
 os.environ['STREAMLIT_SERVER_FILE_WATCHER_TYPE'] = 'none'
@@ -35,7 +39,7 @@ if prompt := st.chat_input("Como posso ajudar você hoje?"):
         message_placeholder = st.empty()
         full_response = ""
 
-        # Lógica melhorada para selecionar a Crew apropriada
+        # Lógica para selecionar a Crew apropriada
         if any(keyword in prompt.lower() for keyword in ["recrutar", "contratação", "vaga"]):
             crew = Crew(agents=[recrutamento_selecao, desenvolvedor], tasks=[recrutamento])
         elif "folha de pagamento" in prompt.lower():
@@ -44,12 +48,16 @@ if prompt := st.chat_input("Como posso ajudar você hoje?"):
             crew = Crew(agents=[relacoes_funcionarios], tasks=[mediacao_conflitos])
         elif any(keyword in prompt.lower() for keyword in ["análise", "dados", "relatório"]):
             crew = Crew(agents=[analista_rh], tasks=[analise_dados])
+        elif "benefícios" in prompt.lower():
+            crew = Crew(agents=[coordenador_beneficios], tasks=[gestao_beneficios])
+        elif "vendas" in prompt.lower():
+            crew = Crew(agents=[vendedor], tasks=[vendas])
         else:
             crew = Crew(agents=[ceo], tasks=[delegacao])
 
         try:
-            result = str(crew.kickoff())
-            full_response += result
+            result = crew.kickoff()
+            full_response = str(result)
         except Exception as e:
             full_response = f"Desculpe, ocorreu um erro: {str(e)}"
 
@@ -59,4 +67,4 @@ if prompt := st.chat_input("Como posso ajudar você hoje?"):
 
 # Sidebar
 st.sidebar.title("Informações")
-st.sidebar.info("Este é um assistente de IA para automação de RH. Ele pode ajudar com recrutamento, folha de pagamento, gestão de equipes e análise de dados.")
+st.sidebar.info("Este é um assistente de IA para automação de RH. Ele pode ajudar com recrutamento, folha de pagamento, gestão de equipes, análise de dados e muito mais.")
