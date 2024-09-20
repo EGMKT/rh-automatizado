@@ -4,6 +4,9 @@ from crewai import Crew
 from agents import *
 from tasks import *
 
+# Desativar o file watcher do Streamlit
+os.environ['STREAMLIT_SERVER_FILE_WATCHER_TYPE'] = 'none'
+
 # Configurar variáveis de ambiente para limitar o uso de recursos
 os.environ['STREAMLIT_SERVER_MAX_UPLOAD_SIZE'] = '5'
 os.environ['STREAMLIT_SERVER_MAX_MESSAGE_SIZE'] = '50'
